@@ -1,12 +1,12 @@
 # SmartLearn Multi-Agent Learning System
 
-SmartLearn is a production-style multi-agent learning assistant inspired by the **Deep Research** course demo, but adapted for **teaching, revision, quiz generation, and feedback**.
+SmartLearn is a production-style multi-agent learning assistant designed for teaching, revision, quiz generation, and feedback.
 
-Instead of planning web searches and writing a research report, SmartLearn plans a lesson, explains the concept, generates notes, creates a quiz, and evaluates student answers.
+Instead of focusing on information retrieval or report writing, SmartLearn builds a complete learning experience: it plans a lesson, explains the concept, generates structured notes, creates a quiz, and evaluates student answers.
 
 ## Why this design
 
-The course Deep Research project uses a central manager to orchestrate specialized agents with a streaming UI. SmartLearn follows the same spirit, but the workflow is adapted to learning:
+SmartLearn uses a centralized orchestration model with specialized agents working together to deliver a full learning pipeline:
 
 1. **Planner Agent** builds a lesson plan from the topic, learner level, and goals.
 2. **Explainer Agent** teaches the concept clearly.
@@ -46,14 +46,14 @@ smartlearn_multi_agent/
 
 ### 1. Deterministic orchestration manager
 
-The original SmartLearn idea proposed a Coordinator Agent. In this build, the **Python manager** is the primary orchestrator.
+The original SmartLearn concept included a Coordinator Agent. In this implementation, a Python-based manager serves as the primary orchestrator.
 
-Why this is better for the assignment:
+This approach offers several advantages:
 
-- more reliable than free-form routing for a fixed teaching workflow
-- easier to debug in class
-- easier to stream step-by-step progress in Gradio
-- still keeps true agent specialization at each stage
+- Higher reliability for a fixed, structured learning workflow
+- Simpler debugging and observability, especially in instructional settings
+- Straightforward step-by-step progress streaming in the Gradio UI
+- Preserves clear separation of concerns, with specialized agents handling each stage
 
 ### 2. Structured outputs everywhere
 
@@ -145,7 +145,7 @@ Then open the local Gradio URL in your browser.
 
 ## Notes on implementation
 
-- The manager streams status updates similar to the Deep Research UI.
+
 - Notes and quiz generation run in parallel using a thread pool after the explanation step.
 - Evaluation uses both light deterministic auto-grading and an LLM feedback pass.
 - Session state is stored in memory for demo simplicity.
